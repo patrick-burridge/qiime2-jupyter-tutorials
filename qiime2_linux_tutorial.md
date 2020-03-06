@@ -19,7 +19,10 @@ qiime --help
 
 ### moving pictures tutorial
 https://docs.qiime2.org/2020.2/tutorials/moving-pictures/
+
+This notebook generates a handful of local files and folders so cd/navigate to a special directory if you feel so inclined
 ```
+jupyter serverextension enable --py qiime2 --sys-prefix
 wget https://github.com/voidlogic/QIIME2_jupyter_tutorials/blob/master/QIIME2_MovingPicturesTutorial.ipynb
 jupyter notebook QIIME2_MovingPicturesTutorial.ipynb
 ```

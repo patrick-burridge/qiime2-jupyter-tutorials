@@ -34,4 +34,4 @@ jupyter notebook qiime2-MovingPicturesTutorial.ipynb
 wget https://raw.githubusercontent.com/voidlogic/qiime2-jupyter-tutorials/master/scripts/qiime2jupytersetup
 bash qiime2jupytersetup
 ```
-(open your browser and naviage to https://000.000.000.000:9000/ with correct ip to see the notebook)
+(open your browser and naviage to https://000.000.000.000:9000 with the ip you ssh into to see the notebook)

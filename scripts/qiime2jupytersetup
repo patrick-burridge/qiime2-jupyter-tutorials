@@ -1,1 +1,42 @@
 #!/bin/bash
+
+echo "This is a script to install qiime2 with conda, configure a jupyter server to be accessible over the network, \
+and run the qiime2 moving pictures tutorial notebook on port :9000"
+echo "This script assumes conda is already installed and initialized"
+echo "This script will prompt you to input a password for accessing your jupyter server \
+after it finishes downloading the qiime2 environment"
+read -p "Press enter to continue"
+
+conda update conda -y
+wget https://data.qiime2.org/distro/core/qiime2-2020.2-py36-linux-conda.yml
+conda env create -n qiime2-2020.2 --file qiime2-2020.2-py36-linux-conda.yml
+rm qiime2-2020.2-py36-linux-conda.yml
+sleep 10
+eval "$(conda shell.bash hook)"
+conda activate qiime2-2020.2
+jupyter serverextension enable --py qiime2 --sys-prefix
+jupyter notebook --generate-config
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -subj "/C=US/ST=Ohio/L=Oxford/O=MiamiU/CN=bioinformatics" \
+    -keyout ~/.jupyter/jupyterkey.key -out ~/.jupyter/jupytercert.pem
+
+
+echo 'Please input a password for accessing your jupyter server'
+jupyter notebook password
+
+echo '# Set options for certfile, ip, password, and toggle off' >> ~/.jupyter/jupyter_notebook_config.py
+echo '# browser auto-opening' >> ~/.jupyter/jupyter_notebook_config.py
+echo "c.NotebookApp.certfile = u'$HOME/.jupyter/jupytercert.pem'" >> ~/.jupyter/jupyter_notebook_config.py
+echo "c.NotebookApp.keyfile = u'$HOME/.jupyter/jupyterkey.key'" >> ~/.jupyter/jupyter_notebook_config.py
+echo '# Set ip to '*' to bind on all interfaces (ips) for the public server' >> ~/.jupyter/jupyter_notebook_config.py
+echo "c.NotebookApp.ip = '*'" >> ~/.jupyter/jupyter_notebook_config.py
+echo "c.NotebookApp.open_browser = False" >> ~/.jupyter/jupyter_notebook_config.py
+echo '# It is a good idea to set a known, fixed port for server access' >> ~/.jupyter/jupyter_notebook_config.py
+echo "c.NotebookApp.port = 9000" >> ~/.jupyter/jupyter_notebook_config.py
+
+
+mkdir ~/qiime2
+cd ~/qiime2
+wget https://raw.githubusercontent.com/voidlogic/qiime2-jupyter-tutorials/master/notebooks/qiime2-MovingPicturesTutorial.ipynb
+jupyter notebook qiime2-MovingPicturesTutorial.ipynb

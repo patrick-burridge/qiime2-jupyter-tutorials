@@ -25,13 +25,13 @@ https://docs.qiime2.org/2020.2/tutorials/moving-pictures/
 This notebook generates a handful of local files and folders so cd/navigate to a special directory if you feel so inclined
 ```
 jupyter serverextension enable --py qiime2 --sys-prefix
-wget https://raw.githubusercontent.com/voidlogic/qiime2-jupyter-tutorials/master/notebooks/qiime2-MovingPicturesTutorial.ipynb
+wget https://raw.githubusercontent.com/patrick-burridge/qiime2-jupyter-tutorials/master/notebooks/qiime2-MovingPicturesTutorial.ipynb
 jupyter notebook qiime2-MovingPicturesTutorial.ipynb
 ```
 
 ## optional script for automatically installing qiime2 and configuring jupyter to be accessible over network
 ```
-wget https://raw.githubusercontent.com/voidlogic/qiime2-jupyter-tutorials/master/scripts/qiime2jupytersetup
+wget https://raw.githubusercontent.com/patrick-burridge/qiime2-jupyter-tutorials/master/scripts/qiime2jupytersetup
 bash qiime2jupytersetup
 ```
 (open your browser and naviage to https://000.000.000.000:9000 with the ip you ssh into to see the notebook)

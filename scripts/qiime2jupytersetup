@@ -38,5 +38,5 @@ echo "c.NotebookApp.port = 9000" >> ~/.jupyter/jupyter_notebook_config.py
 
 mkdir ~/qiime2
 cd ~/qiime2
-wget https://raw.githubusercontent.com/voidlogic/qiime2-jupyter-tutorials/master/notebooks/qiime2-MovingPicturesTutorial.ipynb
+wget https://raw.githubusercontent.com/patrick-burridge/qiime2-jupyter-tutorials/master/notebooks/qiime2-MovingPicturesTutorial.ipynb
 jupyter notebook 
